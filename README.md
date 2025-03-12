@@ -28,3 +28,13 @@ go run client-http/main.go
 ```shell
 go run client-connect/main.go
 ```
+
+## Building the Docker image
+```shell
+docker build -t example-connect-http3 .
+```
+
+## Running the Docker container
+```shell
+docker run -p 6660:6660 example-connect-http3
+```
