@@ -28,3 +28,14 @@ go run client-http/main.go
 ```shell
 go run client-connect/main.go
 ```
+
+## Building and running the Docker container
+To build the Docker image, run the following command:
+```shell
+docker build -t example-connect-http3 .
+```
+
+To run the Docker container, use the following command:
+```shell
+docker run -p 6660:6660 example-connect-http3
+```
