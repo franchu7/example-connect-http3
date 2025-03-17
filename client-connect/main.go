@@ -38,10 +38,25 @@ func main() {
 
 	log.Println("connect: ", url)
 	log.Println("send: ", reqBody)
-	resp, err := svcClient.Say(context.Background(), connect.NewRequest(reqBody))
+
+	request := connect.NewRequest(&elizav1.IntroduceRequest{
+		Name: "Ringo",
+	})
+
+	stream, err := svcClient.Introduce(context.Background(), request)
+
 	if err != nil {
 		log.Fatalf("error: %s", err)
 	}
 
-	log.Println("recv: ", resp.Msg)
+	for(stream.Receive()) {
+		log.Println("recv: ", stream.Msg())
+	}
+
+	/*resp, err := svcClient.Say(context.Background(), connect.NewRequest(reqBody))
+	if err != nil {
+		log.Fatalf("error: %s", err)
+	}
+
+	log.Println("recv: ", resp.Msg)*/
 }
